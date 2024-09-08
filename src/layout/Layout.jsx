@@ -1,13 +1,15 @@
 import { Outlet } from "react-router-dom";
 import Navbar from "../components/navbar/Navbar";
 
-const Layout = () => {
-    return (
-        <>
-            <Navbar />
-            <main><Outlet /></main>            
-        </>
-    );
-}
+const LayoutWithNavbar = () => (
+    <>
+        <Navbar />
+        <main><Outlet /></main>
+    </>
+);
 
-export default Layout;
+const LayoutWithoutNavbar = () => (
+    <main><Outlet /></main>
+);
+
+export { LayoutWithNavbar, LayoutWithoutNavbar };

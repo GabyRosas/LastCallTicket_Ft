@@ -1,24 +1,34 @@
 import { createBrowserRouter } from "react-router-dom";
 import Home from "../pages/Home";
-import Layout from "../layout/Layout";
+import { LayoutWithNavbar, LayoutWithoutNavbar } from "../layout/Layout";
 import Login from "../pages/Login";
+import Search from "../pages/Search";
 import '../index.css';
 
 
 export const router = createBrowserRouter([
     {
         path: "/",
-        element: <Layout/>,
+        element: <LayoutWithNavbar/>,
         children: [
             {
                 path: "/",
                 element: <Home/>
-            },         
+            },       
+                       
+        ]
+    },
+    {
+        element: <LayoutWithoutNavbar />, 
+        children: [
             {
                 path: "/login",
-                element: <Login/>,
-            },      
-       
-    ]
-},
+                element: <Login />,
+            },
+            {
+                path: "/search",
+                element: <Search/>,
+            },               
+        ],
+    },
 ])
