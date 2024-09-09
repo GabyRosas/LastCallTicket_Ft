@@ -12,6 +12,9 @@ export default {
         'custom-purple-light': '#DA69BA',
         'custom-white': '#FFFFFF',
       },
+      fontFamily: {
+        'chalkboard': ['"Chalkboard SE"', 'Comic Sans MS', 'cursive'],
+      },
     },
   },
   plugins: [],
