@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import useApi from "../../services/useApi";
 import { API_BASE_URL } from "../../config/urls";
 
@@ -10,6 +11,7 @@ const TicketSearch = () => {
   });
 
   const [filteredTickets, setFilteredTickets] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (data) {
@@ -35,16 +37,18 @@ const TicketSearch = () => {
     }
   };
 
+  const handleTicketClick = (ticketId) => {
+    navigate(`/ticket-details/${ticketId}`);
+  };
+
+  const userType = localStorage.getItem("user_type");
+
   return (
     <div
     className="min-h-screen flex flex-col items-center justify-center bg-cover bg-center"
-    style={{
-      backgroundImage: `url('/images/vuelosfondo.jpg')`,
-      backgroundSize: "cover", // Asegura que la imagen cubra toda el área
-      height: "100vh", // Toma todo el alto de la pantalla
-    }}
+    style={{backgroundImage: `url('/images/vuelosfondo.jpg')`,}}
     >
-      {/* Caja de búsqueda */}
+    
     <div className="bg-yellow-100 bg-opacity-90 p-6 rounded-lg shadow-lg w-11/12 max-w-md text-center">
       <form onSubmit={handleSearch} className="space-y-4">
         <input
@@ -65,14 +69,16 @@ const TicketSearch = () => {
         </button>
       </form>
     </div>
-
-        {/* Resultados de búsqueda */}
+     
     <div className="mt-8 w-11/12 max-w-md bg-white bg-opacity-70 p-4 rounded-lg shadow-lg">
       {error && <p className="text-red-500">Error: {error}</p>}
       {filteredTickets.length > 0 ? (
         <ul className="space-y-2">
           {filteredTickets.map((ticket) => (
-            <li key={ticket.id} className="border-b py-2 text-lg">
+            <li key={ticket.id}
+                onClick={() => handleTicketClick(ticket.id)}
+                className="border-b py-2 text-lg cursor-pointer hover:bg-gray-200"
+            >
               {ticket.departure_place} to {ticket.arrival_place} - ${ticket.proposed_price}
             </li>
           ))}
