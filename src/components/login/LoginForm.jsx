@@ -50,9 +50,15 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="max-w-sm mx-auto p-6 bg-white rounded-lg shadow-lg">
+    <div className="max-w-sm mx-auto p-6 bg-white rounded-lg shadow-lg"
+    style={{
+        backgroundImage: `url('/images/loginfondo.jpg')`,
+        backgroundSize: "cover", 
+        height: "100vh", 
+      }}
+    >
       <form onSubmit={handleSubmit} className="space-y-4">
-        <h1 className="text-2xl font-bold mb-4">Log In</h1>
+        <h1 className="text-2xl text-custom-white font-bold mb-4">Iniciar sesión</h1>
         {renderError()}
         <input
           type="text"
@@ -60,7 +66,7 @@ const LoginForm = () => {
           value={formData.username}
           onChange={handleChange}
           placeholder="Username"
-          className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          className="w-full p-3 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-custom-purple text-custom-purple-ligth"
         />
         <input
           type="password"
@@ -68,20 +74,20 @@ const LoginForm = () => {
           value={formData.password}
           onChange={handleChange}
           placeholder="Password"
-          className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          className="w-full p-3 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-custom-purple"
         />
         <button
           type="submit"
           disabled={loading}
-          className="w-full bg-indigo-600 text-white py-2 px-4 rounded-lg hover:bg-indigo-500"
+          className="w-full bg-custom-purple text-white py-2 px-4 rounded-lg hover:bg-custom-purple-light"
         >
-          {loading ? "Logging In..." : "Log In"}
+          {loading ? "Validando cuenta..." : "Ingresar"}
         </button>
         <a
           href="/register"
           className="text-indigo-600 hover:underline block text-center mt-4"
         >
-          Don't have an account? Register
+          Aún no tienes una cuenta?
         </a>
       </form>
     </div>
