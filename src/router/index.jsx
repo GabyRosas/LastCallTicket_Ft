@@ -6,6 +6,7 @@ import Search from "../pages/Search";
 import Register from "../pages/Register";
 import Detail from "../pages/Detail";
 import Ticketupdate from "../pages/Ticketupdate";
+import Ticketcreate from "../pages/Ticketcreate";
 import '../index.css';
 
 
@@ -43,7 +44,11 @@ export const router = createBrowserRouter([
             {
                 path: "/ticketupdate/:ticketId",
                 element: <Ticketupdate/>,
-            },              
+            },  
+            {
+                path: "/ticketcreate",
+                element: <Ticketcreate/>,
+            },                
         ],
     },
 ])

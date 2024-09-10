@@ -11,6 +11,7 @@ export default {
         'custom-purple-dark': '#5A1D49',
         'custom-purple-light': '#DA69BA',
         'custom-white': '#FFFFFF',
+        'custom-gray': '#CECECE',
       },
       fontFamily: {
         'chalkboard': ['"Chalkboard SE"', 'Comic Sans MS', 'cursive'],
