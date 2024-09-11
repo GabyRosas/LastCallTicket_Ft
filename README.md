@@ -1,4 +1,5 @@
-# Last Call Ticket :
+# Last Call Ticket : ![logomini](https://github.com/user-attachments/assets/d715c006-d58a-4706-94f5-5559dca82c2f)
+
 
 ## Índice
 
@@ -150,12 +151,14 @@ frontend-repo/
 - [Django REST Framework](https://www.django-rest-framework.org/)
 - [PostgreSQL](https://www.postgresql.org/)
 - [psycopg2](https://pypi.org/project/psycopg2/) para la conexión con la base de datos PostgreSQL.
-- [postman] (https://www.postman.com/) para probar las APIs
+- [Postman](https://www.postman.com/) para probar el buen funcionamiento de las APIs
 
 **Frontend** *(https://github.com/GabyRosas/trip_planner_front)*
 - [React.js](https://reactjs.org/)
 - [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 - [Axios](https://axios-http.com/es/docs/intro)
+- [Tailwindcss](https://tailwindcss.com/)
+- 
 
 ## Uso
 
