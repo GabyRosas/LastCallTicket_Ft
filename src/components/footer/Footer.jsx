@@ -29,6 +29,10 @@ const Footer = () => {
                 <img src="/images/icons/Avatar.png" alt="Perfil usuario" className="w-6 h-6" />
                 <span className="text-white text-xs">Perfil</span>
             </NavLink>
+            <NavLink to="/login" className="flex flex-col items-center">
+                <img src="/images/icons/Logout.png" alt="Desconexion" className="w-6 h-6" />
+                <span className="text-white text-xs">Salir</span>
+            </NavLink>
         </footer>
     );
 }

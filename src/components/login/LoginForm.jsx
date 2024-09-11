@@ -53,8 +53,8 @@ const LoginForm = () => {
     <div className="min-h-screen flex flex-col mx-auto p-6"
     style={{backgroundImage: `url('/images/loginfondo.jpg')`,}}
     >
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <h1 className="text-2xl text-custom-white text-center font-bold mb-4">Iniciar sesión</h1>
+      <form onSubmit={handleSubmit} className="space-y-8">
+        <h1 className="text-2xl text-custom-white text-center font-bold mb-4" style={{ marginTop: "70px" }}>Iniciar sesión</h1>
         <img
           src="/images/logo.png"
           alt="Logo"

@@ -6,7 +6,7 @@ const ContactButton = ({ phoneNumber }) => {
   return (
     <div>
       <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
-        <button className="bg-green-500 text-white px-4 py-2 rounded">
+        <button className="bg-custom-purple text-white px-4 py-2 rounded-lg">
           Contactar al Vendedor
         </button>
       </a>
