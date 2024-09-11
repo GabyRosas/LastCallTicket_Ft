@@ -86,31 +86,60 @@ La base de datos ha sido diseñada para soportar la funcionalidad de la app, con
 
 ## Estructura del proyecto
 
-El proyecto sigue una estructura común para aplicaciones Django, con la API organizada en diferentes módulos para una gestión eficiente.
+El proyecto sigue una estructura común para aplicaciones Django(backend), con la API organizada en diferentes módulos para una gestión eficiente
+y una estructura React (frontend) lo que facilita el mantenimiento y la evolución del proyecto. .
 
 ```plaintext
-/
-├── last_call_ticket
-├── lastcallticket_pj/
-│   │    ├── __init__.py
-│   │    ├── asgi.py
-│   │    ├── settings.py
-│   │    ├── urls.py
-│   │    ├── wsgi.py
-│   ├── ticket_app/
-│   │    ├── migrations/
-│   │    ├── models.py
-│   │    ├── serializers.py
-│   │    ├── urls.py
-│   │    ├── views.py
-│   │    └── ...
-│   ├── user_app/
-│   │    └── ...
-│   ├── manage.py
-│   ├── requirements.txt
-│   ├── README.md
-│   └── ...
-├── 
+backend-repo/
+├── lastcallticket_pj/         # Proyecto de Django
+│   ├── __init__.py
+│   ├── asgi.py
+│   ├── settings.py
+│   ├── urls.py
+│   ├── wsgi.py
+│
+│   ├── ticket_app/            # App relacionada con boletos
+│   │   ├── migrations/
+│   │   ├── models.py
+│   │   ├── serializers.py
+│   │   ├── urls.py
+│   │   ├── views.py
+│   │   └── ...
+│
+│   ├── user_app/              # App relacionada con usuarios
+│   │   └── ...
+│
+│   ├── manage.py              # Script de gestión de Django
+│   ├── requirements.txt       # Dependencias del proyecto
+│   ├── README.md              # Documentación del proyecto
+└── ...
+
+frontend-repo/
+├── frontend/                  # Carpeta que contiene todo el código de React
+│   ├── public/
+│   │   ├── images/            # Carpeta que contiene todas las fotos e icons
+│   │   │   └── vuelosfondo.png
+│   │   └── ...
+│
+│   ├── src/                   # Código fuente de React
+│   │   ├── components/        # Componentes de React
+│   │   │   ├── footer/        # Footer.jsx
+│   │   │   ├── login/         # LoginForm.jsx, Logout.jsx
+│   │   │   ├── navbar/        # Navbar.jsx
+│   │   │   ├── register/      # RegisterForm.jsx
+│   │   │   ├── registerticket/# TicketCreate.jsx, TicketEdit.jsx
+│   │   │   ├── search/        # ContactUser.jsx, SearchTickets.jsx, TicketDetail.jsx
+│   │   ├── config/            # urls.js
+│   │   ├── layout/            # Layout.jsx
+│   │   ├── pages/             # Detail.jsx, Home.jsx, Login.jsx, Register.jsx, etc.
+│   │   ├── router/            # index.jsx
+│   │   ├── services/          # useApi.jsx
+│   │   └── ...
+│
+│   ├── package.json           # Dependencias de frontend
+│   ├── tailwind.config.js     # Configuración de Tailwind CSS
+└── ...
+
 ```
 ## Tecnologías
 
