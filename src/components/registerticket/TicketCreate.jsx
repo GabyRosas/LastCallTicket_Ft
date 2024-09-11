@@ -1,11 +1,14 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 import useApi from "../../services/useApi";
 import { API_BASE_URL } from "../../config/urls";
+import axios from "axios";
 
 const TicketCreate = () => {
-  const navigate = useNavigate();
-  const [formData, setFormData] = useState({
+  // Estado para almacenar el username desde el localStorage
+  const username = localStorage.getItem("username");
+
+  // Estado para los datos del formulario
+  const [ticketData, setTicketData] = useState({
     departure_place: "",
     arrival_place: "",
     departure_date: "",
@@ -13,194 +16,170 @@ const TicketCreate = () => {
     original_price: "",
     proposed_price: "",
     note: "",
-    transport: {
-      transport_type: "",  // avión o autobús
-      transport_name: "",  // nombre de la compañía
-    },
+    transport_id: "",  // ID del transporte seleccionado
   });
 
+  // Estado para almacenar el ID del usuario
   const [userId, setUserId] = useState(null);
 
-  // Obtén el username del localStorage
-  const username = localStorage.getItem("username");
-
-  // Usa useApi para la API de obtener el ID del usuario
-  const { request: fetchUserIdApi } = useApi({
-    apiEndpoint: `${API_BASE_URL}user-id/${username}/`, // Usa el username en la URL
-    method: "GET",
-    requiresAuth: true,
-  });
-  console.log(userId)
-  useEffect(() => {
-    if (username) {
-      fetchUserIdApi().then(response => {
-        setUserId(response.data.id); // Asume que la respuesta tiene un campo 'id'
-      }).catch(error => {
-        console.error("Error al obtener el ID del usuario:", error);
-      });
-    }
-  }, [username, fetchUserIdApi]);
-
-  const { request: createTicket } = useApi({
+  // Hook personalizado para hacer la solicitud de creación del ticket
+  const {
+    data: createTicketData,
+    loading: createLoading,
+    error: createError,
+    request: createTicketRequest,
+  } = useApi({
     apiEndpoint: `${API_BASE_URL}tickets/`,
     method: "POST",
-    requiresAuth: true,
+    requiresAuth: true,  // Usamos autenticación
   });
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const formatDate = (dateString) => {
-      return dateString ? new Date(dateString).toISOString().slice(0, 16) : null;
-    };
+  // Función para obtener el ID del usuario basado en el username
+  const fetchUserId = async () => {
+    try {
+      const response = await axios.get(
+        `${API_BASE_URL}user-id/${username}/`
+      );
+      setUserId(response.data.id);
+    } catch (error) {
+      console.error("Error al obtener el ID del usuario:", error);
+    }
+  };
 
-    const newTicket = {
-      ...formData,
-      departure_date: formatDate(formData.departure_date),
-      return_date: formatDate(formData.return_date),
-      user: userId, // Usa el ID del usuario
+  // Obtener el ID del usuario al cargar el componente
+  useEffect(() => {
+    if (username) {
+      fetchUserId();
+    }
+  }, [username]);
+
+  // Función para manejar el envío del formulario
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    if (!userId) {
+      console.error("El ID del usuario no está disponible");
+      return;
+    }
+
+    const newTicketData = {
+      ...ticketData,
+      user: userId,  // Usar el ID del usuario
+      transport: ticketData.transport_id,
     };
 
     try {
-      await createTicket(newTicket);
-      navigate("/ticket-list"); // Redirige a la lista de boletos tras la creación
+      await createTicketRequest(newTicketData);
+      alert("Ticket creado exitosamente!");
+      // Puedes redirigir o limpiar el formulario después de la creación
     } catch (error) {
       console.error("Error al crear el ticket:", error);
     }
   };
 
+  // Función para manejar cambios en los campos del formulario
   const handleChange = (e) => {
     const { name, value } = e.target;
-    if (name.startsWith("transport_")) {
-      setFormData({
-        ...formData,
-        transport: {
-          ...formData.transport,
-          [name.split("_")[1]]: value,
-        },
-      });
-    } else {
-      setFormData({
-        ...formData,
-        [name]: value,
-      });
-    }
+    setTicketData({
+      ...ticketData,
+      [name]: value,
+    });
   };
-
+console.log(ticketData)
   return (
-    <div className="max-w-md mx-auto mt-10">
-      <h2 className="text-2xl font-bold mb-5">Crear Nuevo Boleto</h2>
+    <div>
+      <h2>Crear Ticket</h2>
+      {createError && <p>Error: {createError}</p>}
       <form onSubmit={handleSubmit}>
-        {/* Campos del formulario */}
-        <div className="mb-4">
-          <label className="block mb-1">Lugar de salida</label>
+        <div>
+          <label>Departure Place</label>
           <input
             type="text"
             name="departure_place"
-            value={formData.departure_place}
+            value={ticketData.departure_place}
             onChange={handleChange}
-            className="w-full p-2 border border-gray-300 rounded"
+            required
           />
         </div>
-
-        <div className="mb-4">
-          <label className="block mb-1">Lugar de llegada</label>
+        <div>
+          <label>Arrival Place</label>
           <input
             type="text"
             name="arrival_place"
-            value={formData.arrival_place}
+            value={ticketData.arrival_place}
             onChange={handleChange}
-            className="w-full p-2 border border-gray-300 rounded"
+            required
           />
         </div>
-
-        <div className="mb-4">
-          <label className="block mb-1">Fecha de salida</label>
+        <div>
+          <label>Departure Date</label>
           <input
             type="datetime-local"
             name="departure_date"
-            value={formData.departure_date}
+            value={ticketData.departure_date}
             onChange={handleChange}
-            className="w-full p-2 border border-gray-300 rounded"
+            required
           />
         </div>
-
-        <div className="mb-4">
-          <label className="block mb-1">Fecha de regreso (opcional)</label>
+        <div>
+          <label>Return Date (Opcional)</label>
           <input
             type="datetime-local"
             name="return_date"
-            value={formData.return_date}
+            value={ticketData.return_date}
             onChange={handleChange}
-            className="w-full p-2 border border-gray-300 rounded"
           />
         </div>
-
-        <div className="mb-4">
-          <label className="block mb-1">Precio original</label>
+        <div>
+          <label>Original Price</label>
           <input
-            type="text"
+            type="number"
             name="original_price"
-            value={formData.original_price}
+            value={ticketData.original_price}
             onChange={handleChange}
-            className="w-full p-2 border border-gray-300 rounded"
+            required
           />
         </div>
-
-        <div className="mb-4">
-          <label className="block mb-1">Precio propuesto</label>
+        <div>
+          <label>Proposed Price</label>
           <input
-            type="text"
+            type="number"
             name="proposed_price"
-            value={formData.proposed_price}
+            value={ticketData.proposed_price}
             onChange={handleChange}
-            className="w-full p-2 border border-gray-300 rounded"
+            required
           />
         </div>
-
-        <div className="mb-4">
-          <label className="block mb-1">Nota</label>
+        <div>
+          <label>Note</label>
           <textarea
             name="note"
-            value={formData.note}
+            value={ticketData.note}
             onChange={handleChange}
-            className="w-full p-2 border border-gray-300 rounded"
           />
         </div>
-
-        <div className="mb-4">
-          <label className="block mb-1">Tipo de Transporte</label>
+        <div>
+          <label>Transport</label>
           <select
-            name="transport_type"
-            value={formData.transport.transport_type}
+            name="transport_id"
+            value={ticketData.transport_id}
             onChange={handleChange}
-            className="w-full p-2 border border-gray-300 rounded"
-          >
-            <option value="">Seleccionar...</option>
-            <option value="avion">Avión</option>
-            <option value="autobus">Autobús</option>
+            required
+          >            
+            <option value="1">FlixBus</option>
+            <option value="2">Vueling</option>
+            <option value="3">Volotea</option>
+            <option value="4">Ryanair</option>
+            <option value="5">BlablaBus</option>
+            <option value="6">Italia Air</option>
+            <option value="7">Iberia</option>
+            <option value="8">Air france</option>
+            <option value="9">Alsa</option>
+            <option value="10">Eurolines</option>
           </select>
         </div>
-
-        <div className="mb-4">
-          <label className="block mb-1">Compañía de Transporte</label>
-          <select
-            name="transport_name"
-            value={formData.transport.transport_name}
-            onChange={handleChange}
-            className="w-full p-2 border border-gray-300 rounded"
-          >
-            <option value="">Seleccionar...</option>
-            {/* Aquí se deben cargar las compañías desde el backend */}
-            <option value="Vueling">Vueling</option>
-            <option value="Blablabus">Blablabus</option>
-          </select>
-        </div>
-
-        <button
-          type="submit"
-          className="bg-blue-500 text-white px-4 py-2 rounded"
-        >
-          Crear Boleto
+        <button type="submit" disabled={createLoading}>
+          {createLoading ? "Creando Ticket..." : "Crear Ticket"}
         </button>
       </form>
     </div>
