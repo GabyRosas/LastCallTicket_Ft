@@ -87,101 +87,117 @@ const TicketCreate = () => {
   };
 console.log(ticketData)
   return (
-    <div>
-      <h2>Crear Ticket</h2>
-      {createError && <p>Error: {createError}</p>}
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Departure Place</label>
-          <input
-            type="text"
-            name="departure_place"
-            value={ticketData.departure_place}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label>Arrival Place</label>
-          <input
-            type="text"
-            name="arrival_place"
-            value={ticketData.arrival_place}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label>Departure Date</label>
-          <input
-            type="datetime-local"
-            name="departure_date"
-            value={ticketData.departure_date}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label>Return Date (Opcional)</label>
-          <input
-            type="datetime-local"
-            name="return_date"
-            value={ticketData.return_date}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label>Original Price</label>
-          <input
-            type="number"
-            name="original_price"
-            value={ticketData.original_price}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label>Proposed Price</label>
-          <input
-            type="number"
-            name="proposed_price"
-            value={ticketData.proposed_price}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label>Note</label>
-          <textarea
-            name="note"
-            value={ticketData.note}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label>Transport</label>
-          <select
-            name="transport_id"
-            value={ticketData.transport_id}
-            onChange={handleChange}
-            required
-          >            
-            <option value="1">FlixBus</option>
-            <option value="2">Vueling</option>
-            <option value="3">Volotea</option>
-            <option value="4">Ryanair</option>
-            <option value="5">BlablaBus</option>
-            <option value="6">Italia Air</option>
-            <option value="7">Iberia</option>
-            <option value="8">Air france</option>
-            <option value="9">Alsa</option>
-            <option value="10">Eurolines</option>
-          </select>
-        </div>
-        <button type="submit" disabled={createLoading}>
-          {createLoading ? "Creando Ticket..." : "Crear Ticket"}
-        </button>
-      </form>
+    
+    
+    <div
+    className="min-h-screen flex flex-col items-center justify-center bg-cover bg-center"
+    style={{backgroundImage: `url('/images/publicfondo.jpg')`,}}
+    >
+      <div className="bg-yellow-100 bg-opacity-90 p-6 rounded-lg shadow-lg w-11/12 max-w-md text-center">
+        {createError && <p>Error: {createError}</p>}
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div>
+            <input
+              type="text"
+              name="departure_place"
+              placeholder="Lugar de salida"
+              value={ticketData.departure_place}
+              onChange={handleChange}
+              required
+              className="w-full p-3 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500"
+            />
+          </div>
+          <div>            
+            <input
+              type="text"
+              name="arrival_place"
+              placeholder="Lugar de llegada"
+              value={ticketData.arrival_place}
+              onChange={handleChange}
+              required
+              className="w-full p-3 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500"
+            />
+          </div>
+          <div>
+            <label className="text-custom-purple-light">Fecha de salida </label>
+            <input
+              type="datetime-local"
+              name="departure_date"
+              value={ticketData.departure_date}
+              onChange={handleChange}
+              required
+              className="w-full p-3 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500"
+            />
+          </div>
+          <div>
+            <label className="text-custom-purple-light">Fecha de regreso (Opcional)</label>
+            <input
+              type="datetime-local"
+              name="return_date"
+              value={ticketData.return_date}
+              onChange={handleChange}
+              className="w-full p-3 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500"
+            />
+          </div>
+          <div>
+              <input
+              type="number"
+              name="original_price"
+              placeholder="Precio original"
+              value={ticketData.original_price}
+              onChange={handleChange}
+              required
+              className="w-full p-3 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500"
+            />
+          </div>
+          <div>
+            <input
+              type="number"
+              name="proposed_price"
+              placeholder="Precio esperado"
+              value={ticketData.proposed_price}
+              onChange={handleChange}
+              required
+              className="w-full p-3 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500"
+            />
+          </div>
+          <div>            
+            <textarea
+              name="note"
+              placeholder="Información adicional"
+              value={ticketData.note}
+              onChange={handleChange}
+              className="w-full p-3 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500"
+            />
+          </div>
+          <div>
+            <label className="text-custom-purple-light">Transport</label>
+            <select
+              name="transport_id"
+              value={ticketData.transport_id}
+              onChange={handleChange}
+              required
+              className="w-full p-3 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500"
+            >            
+              <option value="1">FlixBus</option>
+              <option value="2">Vueling</option>
+              <option value="3">Volotea</option>
+              <option value="4">Ryanair</option>
+              <option value="5">BlablaBus</option>
+              <option value="6">Italia Air</option>
+              <option value="7">Iberia</option>
+              <option value="8">Air france</option>
+              <option value="9">Alsa</option>
+              <option value="10">Eurolines</option>
+            </select>
+          </div>
+          <button type="submit" disabled={createLoading}
+          className="w-full bg-custom-purple text-white py-3 rounded-full hover:bg-custom-purple transition duration-300"
+          >
+            {createLoading ? "Creando Ticket..." : "Crear Ticket"}
+          </button>
+        </form>
+      </div>
     </div>
   );
 };
