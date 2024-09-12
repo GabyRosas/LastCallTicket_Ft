@@ -43,7 +43,7 @@ const TicketDetails = () => {
     if (loading) return <p>Cargando detalles del boleto...</p>;
     if (error) return <p>Error al cargar los detalles: {error}</p>;
 
-    // Verificar si el usuario actual es el vendedor usando username
+   
     const isSeller = ticket?.username === currentUsername;
     console.log("Is Seller:", isSeller);
 
@@ -56,26 +56,22 @@ const TicketDetails = () => {
         }}
       >
       {ticket ? (
-        <div className="bg-white p-6 rounded-lg shadow-lg w-11/12 max-w-lg">
-          <h2 className="text-2xl font-bold mb-4">{ticket.departure_place} to {ticket.arrival_place}</h2>
-          <p>Precio: ${ticket.proposed_price}</p>
-          <p>Fecha de salida: {ticket.departure_date}</p>
-          <p>Fecha de regreso: {ticket.return_date}</p>
-          <p>Fecha de registro: {ticket.register_date}</p>
-          <p>Precio original: ${ticket.original_price}</p>
-          <p>Nota: {ticket.note}</p>
-          <p>Vendedor: {ticket.username}</p>
+        <div className="bg-custom-yellow p-6 rounded-lg shadow-lg w-11/12 max-w-lg">
+          <h2 className="text-2xl font-bold text-custom-purple mb-4">{ticket.departure_place} to {ticket.arrival_place}</h2>
+          <p className="text-2 font-bold text-custom-purple-light mb-3">Precio: ${ticket.proposed_price}</p>
+          <p className="text-2 font-bold text-custom-purple-light mb-3">Fecha de salida: {ticket.departure_date}</p>
+          <p className="text-2 font-bold text-custom-purple-light mb-3">Fecha de regreso: {ticket.return_date}</p>
+          <p className="text-2 font-bold text-custom-purple-light mb-3">Fecha de registro: {ticket.register_date}</p>
+          <p className="text-2 font-bold text-custom-purple-light mb-3">Precio original: ${ticket.original_price}</p>
+          <p className="text-2 font-bold text-custom-purple-light mb-3">Nota: {ticket.note}</p>
+          <p className="text-2xl font-bold text-custom-purple flex justify-end mb-4">Vendedor: {ticket.username}</p>
 
-          {/* Mostrar botón según si el usuario es vendedor o comprador */}
           {isSeller ? (
-            <button className="bg-blue-500 text-white px-4 py-2 mt-4 rounded-lg"
+            <button className="bg-custom-purple text-white px-4 py-2 mt-4 rounded-lg"
               onClick={() => navigate(`/ticketupdate/${ticket.id}`)}>
               Editar Boleto
             </button>
           ) : (
-            /*<button className="bg-green-500 text-white px-4 py-2 mt-4 rounded-lg">
-              Contactar Vendedor
-            </button> */
             <ContactButton phoneNumber={phoneNumber} />
           )}
         </div>

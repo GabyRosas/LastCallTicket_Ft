@@ -6,6 +6,7 @@ import Search from "../pages/Search";
 import Register from "../pages/Register";
 import Detail from "../pages/Detail";
 import Ticketupdate from "../pages/Ticketupdate";
+import Ticketcreate from "../pages/Ticketcreate";
 import '../index.css';
 
 
@@ -17,6 +18,10 @@ export const router = createBrowserRouter([
             {
                 path: "/",
                 element: <Home/>
+            },  
+            {
+                path: "/ticket-details/:ticketId",
+                element: <Detail/>,
             },       
                        
         ]
@@ -35,15 +40,15 @@ export const router = createBrowserRouter([
             {
                 path: "/register",
                 element: <Register/>,
-            },  
-            {
-                path: "/ticket-details/:ticketId",
-                element: <Detail/>,
-            },  
+            },             
             {
                 path: "/ticketupdate/:ticketId",
                 element: <Ticketupdate/>,
-            },              
+            },  
+            {
+                path: "/ticketcreate",
+                element: <Ticketcreate/>,
+            },                
         ],
     },
 ])
