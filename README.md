@@ -147,7 +147,9 @@ frontend-repo/
 
 **Backend**
 - [Python](https://www.python.org/)
-- [Django](https://www.djangoproject.com/)
+- [Django](https://docs.pytest.org/en/stable/)
+- [Pytest](https://pytest-django.readthedocs.io/en/latest/)
+- [Pytest-Django](https://www.djangoproject.com/)
 - [Django REST Framework](https://www.django-rest-framework.org/)
 - [PostgreSQL](https://www.postgresql.org/)
 - [psycopg2](https://pypi.org/project/psycopg2/) para la conexión con la base de datos PostgreSQL.
