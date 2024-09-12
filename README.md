@@ -3,19 +3,19 @@
 
 ## Índice
 
-- [Proyecto 📝](#proyecto-)
-    - [Requisitos previos](#requisitos-previos-)
+- [Proyecto](#proyecto)
+    - [Requisitos previos](#requisitos-previos)
 - [Diagramas](#diagramas-)
-    - [Diagrama de flujo](#diagrama-de-flujo-)
-    - [Diagrama de datos](#diagrama-de-datos-)
-- [Instalación 🛠️](#instalación-)
-    - [Requerimientos](#requerimientos-)
-- [Estructura del proyecto](#estructura-del-proyecto-)
-- [Tecnologías](#tecnologías-)
-- [Uso](#uso-)
-- [Contribución 🤝](#contribución-)
-- [Desarrolladores 👩‍💻](#desarrolladores-)
-- [Demo](#demo-)
+    - [Diagrama de flujo](#diagrama-de-flujo)
+    - [Diagrama de datos](#diagrama-de-datos)
+- [Instalación](#instalación)
+    - [Requerimientos](#requerimientos)
+- [Estructura del proyecto](#estructura-del-proyecto)
+- [Tecnologías](#tecnologías)
+- [Uso](#uso)
+- [Contribución](#contribución)
+- [Desarrolladores](#desarrolladores)
+- [Demo](#demo)
 
 ## Proyecto 
 
