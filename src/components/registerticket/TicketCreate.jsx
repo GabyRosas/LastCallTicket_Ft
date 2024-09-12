@@ -4,10 +4,10 @@ import { API_BASE_URL } from "../../config/urls";
 import axios from "axios";
 
 const TicketCreate = () => {
-  // Estado para almacenar el username desde el localStorage
+ 
   const username = localStorage.getItem("username");
 
-  // Estado para los datos del formulario
+
   const [ticketData, setTicketData] = useState({
     departure_place: "",
     arrival_place: "",
@@ -16,13 +16,11 @@ const TicketCreate = () => {
     original_price: "",
     proposed_price: "",
     note: "",
-    transport_id: "",  // ID del transporte seleccionado
+    transport_id: "",  
   });
 
-  // Estado para almacenar el ID del usuario
   const [userId, setUserId] = useState(null);
 
-  // Hook personalizado para hacer la solicitud de creación del ticket
   const {
     data: createTicketData,
     loading: createLoading,
@@ -31,10 +29,10 @@ const TicketCreate = () => {
   } = useApi({
     apiEndpoint: `${API_BASE_URL}tickets/`,
     method: "POST",
-    requiresAuth: true,  // Usamos autenticación
+    requiresAuth: true,  
   });
 
-  // Función para obtener el ID del usuario basado en el username
+ 
   const fetchUserId = async () => {
     try {
       const response = await axios.get(
@@ -46,14 +44,14 @@ const TicketCreate = () => {
     }
   };
 
-  // Obtener el ID del usuario al cargar el componente
+  
   useEffect(() => {
     if (username) {
       fetchUserId();
     }
   }, [username]);
 
-  // Función para manejar el envío del formulario
+ 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -64,20 +62,20 @@ const TicketCreate = () => {
 
     const newTicketData = {
       ...ticketData,
-      user: userId,  // Usar el ID del usuario
+      user: userId,  
       transport: ticketData.transport_id,
     };
 
     try {
       await createTicketRequest(newTicketData);
       alert("Ticket creado exitosamente!");
-      // Puedes redirigir o limpiar el formulario después de la creación
+     
     } catch (error) {
       console.error("Error al crear el ticket:", error);
     }
   };
 
-  // Función para manejar cambios en los campos del formulario
+ 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setTicketData({

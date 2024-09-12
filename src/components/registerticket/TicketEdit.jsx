@@ -90,7 +90,7 @@ const TicketEdit = () => {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center bg-cover bg-center" style={{ backgroundImage: `url('/images/publicfondo.jpg')` }}>
         <div className="bg-custom-yellow bg-opacity-80 p-6 rounded-lg shadow-lg w-11/12 max-w-md text-center">         
-          <form onSubmit={handleSubmit} className="space-y-4"> {/* Espaciado entre inputs */}
+          <form onSubmit={handleSubmit} className="space-y-4"> 
             <div>
               <label className="block mb-1 text-custom-purple-light font-semibold">Lugar de salida</label>
               <input
@@ -188,7 +188,7 @@ const TicketEdit = () => {
               </select>
             </div>
     
-            <div className="mt-8"> {/* Añadir margen superior para separar el botón */}
+            <div className="mt-8"> 
               <button
                 type="submit"
                 className="w-full bg-custom-purple text-white py-3 rounded-full hover:bg-custom-purple transition duration-300"
