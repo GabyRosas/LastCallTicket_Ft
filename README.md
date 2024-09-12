@@ -38,7 +38,7 @@ El backend está desarrollado en Python utilizando Django y Django REST Framewor
 
 ### Workflow
 
-[Ver workflow](#) *(https://drive.google.com/file/d/1mTCRFqmTulP77HtNCvABib0hpjCstS6j/view)*
+[Ver workflow](#) *(https://drive.google.com/file/d/1C1TKK97VnOWO9UVHcWZxQOuuZrtLZQ3W/view?usp=sharing)*
 
 ### Diagrama de datos
 
