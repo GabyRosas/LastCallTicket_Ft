@@ -188,7 +188,7 @@ const TicketEdit = () => {
               </select>
             </div>
     
-            <div className="mt-8"> {/* Añadir margen superior para separar el botón */}
+            <div className="mt-8"> 
               <button
                 type="submit"
                 className="w-full bg-custom-purple text-white py-3 rounded-full hover:bg-custom-purple transition duration-300"

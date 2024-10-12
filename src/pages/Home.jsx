@@ -1,8 +1,9 @@
+import Homepage from "../components/home/Homepage"
 
 const Home = () => {
     return (
         <>
-            <h1>Pagina home de ejemplo</h1>
+            <Homepage/>
         </>
     )
 }
